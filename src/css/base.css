@@ -1,0 +1,65 @@
+/**
+ * CMP Banner Testing — Base styles
+ * Variables, reset, body, and grid background. Shared by all pages.
+ */
+
+:root {
+  --bg-deep: #0a0e14;
+  --bg-surface: #12171f;
+  --bg-card: #161c26;
+  --bg-card-hover: #1c232e;
+  --border: rgba(99, 179, 237, 0.12);
+  --text-primary: #e6edf3;
+  --text-secondary: #8b9cb3;
+  --text-muted: #5c6e85;
+  --accent-cyan: #63b3ed;
+  --accent-teal: #38b2ac;
+  --accent-amber: #ecc94b;
+  --accent-coral: #ed8936;
+  --accent-mint: #68d391;
+  --glow-cyan: rgba(99, 179, 237, 0.15);
+  --radius: 12px;
+  --radius-lg: 20px;
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Subtle grid background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(99, 179, 237, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 179, 237, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.page--narrow {
+  max-width: 900px;
+  padding: 2rem 1.5rem 4rem;
+}

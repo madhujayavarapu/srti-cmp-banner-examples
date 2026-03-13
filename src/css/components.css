@@ -1,0 +1,429 @@
+/**
+ * CMP Banner Testing — Shared components
+ * Header, footer, hero, cards, use-case page sections. Used across all pages.
+ */
+
+/* ========== Header ========== */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+header.main-header {
+  margin-bottom: 4rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-teal));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--bg-deep);
+}
+
+.logo-text {
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  padding: 0.35rem 0.65rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.badge--accent {
+  background: rgba(236, 201, 75, 0.1);
+  border-color: rgba(236, 201, 75, 0.25);
+  color: var(--accent-amber);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color var(--transition);
+}
+
+.back-link:hover {
+  color: var(--accent-amber);
+}
+
+.back-link::before {
+  content: '←';
+}
+
+/* ========== Hero ========== */
+.hero {
+  margin-bottom: 3rem;
+}
+
+.hero.hero--center {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.hero .label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent-amber);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+}
+
+.hero--center h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 560px;
+}
+
+.hero--center p {
+  font-size: 1.1rem;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ========== Section ========== */
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.section-label,
+.section-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border), transparent);
+}
+
+/* ========== Cards (landing grid) ========== */
+.use-cases {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--card-accent, var(--accent-cyan));
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(99, 179, 237, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+}
+
+.card[href="./test.html"] .card-icon,
+.card[href="test.html"] .card-icon { background: rgba(99, 179, 237, 0.15); --card-accent: var(--accent-cyan); }
+.card[href="./autoblocking.html"] .card-icon,
+.card[href="autoblocking.html"] .card-icon { background: rgba(56, 178, 172, 0.15); --card-accent: var(--accent-teal); }
+.card[href="./usecases/risk-analysis.html"] .card-icon,
+.card[href="usecases/risk-analysis.html"] .card-icon { background: rgba(236, 201, 75, 0.15); --card-accent: var(--accent-amber); }
+.card[href="#compliance"] .card-icon { background: rgba(104, 211, 145, 0.15); --card-accent: var(--accent-mint); }
+.card[href="#scanning"] .card-icon { background: rgba(237, 137, 54, 0.15); --card-accent: var(--accent-coral); }
+
+.card h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--card-accent, var(--accent-cyan));
+  font-weight: 500;
+}
+
+.card-arrow::after {
+  content: '→';
+  transition: transform var(--transition);
+}
+
+.card:hover .card-arrow::after {
+  transform: translateX(4px);
+}
+
+/* Placeholder cards (no real page yet) */
+.card[href^="#"] {
+  cursor: default;
+  opacity: 0.92;
+}
+
+.card[href^="#"]:hover {
+  transform: none;
+}
+
+.card[href^="#"] .card-arrow {
+  color: var(--text-muted);
+}
+
+.card[href^="#"] .card-arrow::after {
+  content: '· Coming soon';
+  font-style: italic;
+}
+
+.card[href^="#"]:hover .card-arrow::after {
+  transform: none;
+}
+
+/* ========== CMP provider block (use-case pages) ========== */
+.cmp-provider-block {
+  background: var(--bg-card);
+  border: 1px dashed rgba(236, 201, 75, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+  position: relative;
+  min-height: 120px;
+}
+
+.cmp-provider-block::before {
+  content: 'CMP provider';
+  position: absolute;
+  top: -0.6rem;
+  left: 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--accent-amber);
+  background: var(--bg-deep);
+  padding: 0 0.5rem;
+}
+
+.cmp-provider-hint {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.cmp-provider-hint code {
+  font-style: normal;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--text-secondary);
+  font-size: 0.85em;
+}
+
+/* ========== Info cards (use-case pages) ========== */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  transition: var(--transition);
+}
+
+.info-card:hover {
+  border-color: rgba(236, 201, 75, 0.2);
+  background: var(--bg-card-hover);
+}
+
+.info-card .icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(236, 201, 75, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.info-card h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.info-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* ========== Risk output preview ========== */
+.risk-preview {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.risk-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: rgba(236, 201, 75, 0.06);
+  border-bottom: 1px solid var(--border);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.risk-preview-body {
+  padding: 1.25rem;
+}
+
+.risk-score-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.score-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-amber);
+  box-shadow: 0 0 12px rgba(236, 201, 75, 0.4);
+}
+
+.risk-preview-body p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* ========== Footer ========== */
+footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.main-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+}
+
+footer a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ========== Utilities ========== */
+.text-muted {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}

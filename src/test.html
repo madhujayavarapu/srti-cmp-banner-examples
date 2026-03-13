@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autoblocking + IAB Example — CMP Banner Testing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <!-- THIS CODE IS FOR TESTING PURPOSE ONLY, DO NOT USE IT IN PRODUCTION.-->
+  <script type="text/javascript" src="https://cdn-dev.securiti.xyz/consent/auto_blocking/359f6755-3b42-4021-bd08-36963c23d350/3548ac45-9f35-4e00-aabb-65324231ae60.js"></script>
+</head>
+<body>
+  <div class="page page--narrow">
+    <header>
+      <a href="index.html" class="back-link">All use cases</a>
+      <span class="badge">Banner test</span>
+    </header>
+
+    <section class="hero">
+      <p class="label">Use case</p>
+      <h1>Banner testing (IAB + Autoblocking)</h1>
+      <p>Run the full consent banner with IAB TCF and autoblocking scripts. Validates banner display, consent capture, and script blocking.</p>
+    </section>
+
+    <footer>
+      <a href="index.html">← Back to CMP Banner Testing</a>
+    </footer>
+  </div>
+
+  <!-- THIS CODE IS FOR TESTING PURPOSE ONLY, DO NOT USE IT IN PRODUCTION.
+  After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
+  <script>
+    (function () {
+      var s = document.createElement('script');
+      s.src = 'https://cdn-dev.securiti.xyz/consent/cookie-consent-sdk-loader.js';
+      s.setAttribute('data-tenant-uuid', '359f6755-3b42-4021-bd08-36963c23d350');
+      s.setAttribute('data-domain-uuid', '3548ac45-9f35-4e00-aabb-65324231ae60');
+      s.setAttribute('data-backend-url', 'https://dev.securiti.xyz');
+      s.setAttribute('data-skip-css', 'false');
+      s.defer = true;
+      var parent_node = document.head || document.body;
+      parent_node.appendChild(s);
+    })()
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMP Banner Testing — Securiti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="page">
+    <header class="main-header">
+      <div class="logo">
+        <div class="logo-icon">CMP</div>
+        <span class="logo-text">Banner Testing</span>
+      </div>
+      <span class="badge">Securiti · Dev</span>
+    </header>
+
+    <section class="hero hero--center">
+      <h1>Consent & compliance testing</h1>
+      <p>Use these examples to test banner behavior, risk analysis, and compliance report scanning in a controlled environment.</p>
+    </section>
+
+    <p class="section-label">Use cases</p>
+    <div class="use-cases">
+      <a href="./test.html" class="card">
+        <div class="card-icon">🛡️</div>
+        <h2>Banner testing (IAB + Autoblocking)</h2>
+        <p>Run the full consent banner with IAB TCF and autoblocking scripts. Validates banner display, consent capture, and script blocking.</p>
+        <span class="card-arrow">Open test page</span>
+      </a>
+
+      <a href="./autoblocking.html" class="card">
+        <div class="card-icon">⛔</div>
+        <h2>Autoblocking examples</h2>
+        <p>Test autoblocking behavior in isolation. See how scripts are blocked until consent is given and how they unlock after.</p>
+        <span class="card-arrow">Open examples</span>
+      </a>
+
+      <a href="./usecases/risk-analysis.html" class="card">
+        <div class="card-icon">📊</div>
+        <h2>Risk analysis</h2>
+        <p>Simulate and validate risk analysis flows. Test how consent signals and cookie scans feed into risk scoring and reporting.</p>
+        <span class="card-arrow">Open</span>
+      </a>
+
+      <a href="#compliance" class="card">
+        <div class="card-icon">📋</div>
+        <h2>Compliance report scanning</h2>
+        <p>Test compliance report generation and scanning. Verify report structure, coverage, and export for audits.</p>
+        <span class="card-arrow">Open</span>
+      </a>
+
+      <a href="#scanning" class="card">
+        <div class="card-icon">🔍</div>
+        <h2>Cookie & consent scanning</h2>
+        <p>Run cookie and consent scans against this test site. Validate detection, categorization, and remediation suggestions.</p>
+        <span class="card-arrow">Open</span>
+      </a>
+    </div>
+
+    <footer class="main-footer">
+      For testing purposes only. Do not use in production. · <a href="https://securiti.xyz" target="_blank" rel="noopener">Securiti</a>
+    </footer>
+  </div>
+</body>
+</html>
