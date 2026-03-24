@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base64 Image Viewer — CMP Banner Testing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    .input-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .input-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary, #888);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .base64-textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 14px 16px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      background: var(--surface-2, #111);
+      border: 1px solid var(--border, #222);
+      border-radius: 8px;
+      color: var(--text-primary, #f0f0f0);
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s;
+      box-sizing: border-box;
+    }
+
+    .base64-textarea:focus {
+      border-color: var(--accent, #6c6cff);
+    }
+
+    .base64-textarea::placeholder {
+      color: var(--text-muted, #555);
+    }
+
+    .action-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-render {
+      padding: 10px 22px;
+      background: var(--accent, #6c6cff);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .btn-render:hover {
+      opacity: 0.85;
+    }
+
+    .btn-clear {
+      padding: 10px 16px;
+      background: transparent;
+      color: var(--text-secondary, #888);
+      border: 1px solid var(--border, #222);
+      border-radius: 6px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .btn-clear:hover {
+      border-color: var(--text-secondary, #888);
+      color: var(--text-primary, #f0f0f0);
+    }
+
+    .error-msg {
+      font-size: 13px;
+      color: #f87171;
+      display: none;
+    }
+
+    .image-output {
+      margin-top: 4px;
+    }
+
+    .image-output-header {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted, #555);
+      padding: 10px 16px;
+      background: var(--surface-2, #111);
+      border: 1px solid var(--border, #222);
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      letter-spacing: 0.04em;
+    }
+
+    .image-output-body {
+      background: var(--surface-2, #111);
+      border: 1px solid var(--border, #222);
+      border-radius: 0 0 8px 8px;
+      padding: 24px;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-placeholder {
+      text-align: center;
+      color: var(--text-muted, #555);
+      font-size: 14px;
+    }
+
+    .image-placeholder .placeholder-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .rendered-image {
+      max-width: 100%;
+      max-height: 480px;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .image-meta {
+      margin-top: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted, #555);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="page page--narrow">
+    <header>
+      <a href="../index.html" class="back-link">All use cases</a>
+      <span class="badge badge--accent">Base64 Viewer</span>
+    </header>
+
+    <section class="hero">
+      <p class="label">Use case</p>
+      <h1>Base64 image viewer</h1>
+      <p>Paste a base64-encoded image string (with or without the data URI prefix) to render and preview it instantly.</p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Input</h2>
+      <div class="input-block">
+        <label class="input-label" for="base64-input">Base64 string</label>
+        <textarea
+          id="base64-input"
+          class="base64-textarea"
+          placeholder="Paste base64 here — e.g. data:image/png;base64,iVBORw0KGgo... or just the raw base64 string"
+          spellcheck="false"
+        ></textarea>
+        <div class="action-row">
+          <button class="btn-render" onclick="renderImage()">Render image</button>
+          <button class="btn-clear" onclick="clearAll()">Clear</button>
+          <span class="error-msg" id="error-msg">Invalid base64 or unsupported format.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Preview</h2>
+      <div class="image-output">
+        <div class="image-output-header">base64-image-viewer · preview</div>
+        <div class="image-output-body" id="output-body">
+          <div class="image-placeholder" id="placeholder">
+            <div class="placeholder-icon">🖼️</div>
+            <p>Rendered image will appear here.</p>
+          </div>
+          <img class="rendered-image" id="rendered-img" alt="Rendered base64 image" />
+        </div>
+      </div>
+      <div class="image-meta" id="image-meta"></div>
+    </section>
+
+    <footer>
+      <a href="../index.html">← Back to CMP Banner Testing</a>
+    </footer>
+  </div>
+
+  <script>
+    function renderImage() {
+      const input = document.getElementById('base64-input').value.trim();
+      const img = document.getElementById('rendered-img');
+      const placeholder = document.getElementById('placeholder');
+      const errorMsg = document.getElementById('error-msg');
+      const meta = document.getElementById('image-meta');
+
+      errorMsg.style.display = 'none';
+      img.style.display = 'none';
+      placeholder.style.display = 'flex';
+      placeholder.style.flexDirection = 'column';
+      meta.style.display = 'none';
+
+      if (!input) {
+        errorMsg.textContent = 'Please paste a base64 string first.';
+        errorMsg.style.display = 'inline';
+        return;
+      }
+
+      let src = input;
+
+      // If it's a raw base64 string without data URI prefix, try to detect and add one
+      if (!input.startsWith('data:')) {
+        // Attempt to detect image type from magic bytes after decoding
+        const mimeType = detectMimeType(input);
+        if (!mimeType) {
+          errorMsg.textContent = 'Invalid base64 or unsupported format.';
+          errorMsg.style.display = 'inline';
+          return;
+        }
+        src = `data:${mimeType};base64,${input}`;
+      }
+
+      img.onload = function () {
+        placeholder.style.display = 'none';
+        img.style.display = 'block';
+        meta.textContent = `dimensions: ${img.naturalWidth} × ${img.naturalHeight}px · size: ${formatBytes(estimateBase64Size(input))}`;
+        meta.style.display = 'block';
+      };
+
+      img.onerror = function () {
+        img.style.display = 'none';
+        placeholder.style.display = 'flex';
+        errorMsg.textContent = 'Invalid base64 or unsupported image format.';
+        errorMsg.style.display = 'inline';
+      };
+
+      img.src = src;
+    }
+
+    function detectMimeType(b64) {
+      try {
+        const binary = atob(b64.replace(/\s/g, ''));
+        const bytes = new Uint8Array(binary.length > 8 ? 8 : binary.length);
+        for (let i = 0; i < bytes.length; i++) bytes[i] = binary.charCodeAt(i);
+
+        if (bytes[0] === 0xFF && bytes[1] === 0xD8) return 'image/jpeg';
+        if (bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4E && bytes[3] === 0x47) return 'image/png';
+        if (bytes[0] === 0x47 && bytes[1] === 0x49 && bytes[2] === 0x46) return 'image/gif';
+        if (bytes[0] === 0x52 && bytes[1] === 0x49 && bytes[2] === 0x46 && bytes[3] === 0x46) return 'image/webp';
+        if (bytes[0] === 0x42 && bytes[1] === 0x4D) return 'image/bmp';
+        // Try SVG
+        if (binary.trimStart().startsWith('<svg') || binary.trimStart().startsWith('<?xml')) return 'image/svg+xml';
+        return null;
+      } catch {
+        return null;
+      }
+    }
+
+    function estimateBase64Size(b64) {
+      const clean = b64.replace(/[^A-Za-z0-9+/]/g, '');
+      return Math.floor((clean.length * 3) / 4);
+    }
+
+    function formatBytes(bytes) {
+      if (bytes < 1024) return `${bytes} B`;
+      if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+      return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+    }
+
+    function clearAll() {
+      document.getElementById('base64-input').value = '';
+      document.getElementById('rendered-img').style.display = 'none';
+      document.getElementById('rendered-img').src = '';
+      document.getElementById('placeholder').style.display = 'flex';
+      document.getElementById('error-msg').style.display = 'none';
+      document.getElementById('image-meta').style.display = 'none';
+    }
+
+    // Allow Ctrl+Enter / Cmd+Enter to render
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('base64-input').addEventListener('keydown', function (e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') renderImage();
+      });
+    });
+  </script>
+</body>
+</html>
