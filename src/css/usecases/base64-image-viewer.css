@@ -1,0 +1,148 @@
+/**
+ * CMP Banner Testing — Base64 image viewer use case styles
+ * Input block, textarea, action buttons, image output preview.
+ */
+
+/* ========== Input block ========== */
+.input-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary, #888);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.base64-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 14px 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  background: var(--surface-2, #111);
+  border: 1px solid var(--border, #222);
+  border-radius: 8px;
+  color: var(--text-primary, #f0f0f0);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.base64-textarea:focus {
+  border-color: var(--accent, #6c6cff);
+}
+
+.base64-textarea::placeholder {
+  color: var(--text-muted, #555);
+}
+
+/* ========== Action buttons ========== */
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-render {
+  padding: 10px 22px;
+  background: var(--accent, #6c6cff);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn-render:hover {
+  opacity: 0.85;
+}
+
+.btn-clear {
+  padding: 10px 16px;
+  background: transparent;
+  color: var(--text-secondary, #888);
+  border: 1px solid var(--border, #222);
+  border-radius: 6px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.btn-clear:hover {
+  border-color: var(--text-secondary, #888);
+  color: var(--text-primary, #f0f0f0);
+}
+
+/* ========== Error message ========== */
+.error-msg {
+  font-size: 13px;
+  color: #f87171;
+}
+
+/* ========== Image output ========== */
+.image-output {
+  margin-top: 4px;
+}
+
+.image-output-header {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted, #555);
+  padding: 10px 16px;
+  background: var(--surface-2, #111);
+  border: 1px solid var(--border, #222);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  letter-spacing: 0.04em;
+}
+
+.image-output-body {
+  background: var(--surface-2, #111);
+  border: 1px solid var(--border, #222);
+  border-radius: 0 0 8px 8px;
+  padding: 24px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========== Placeholder ========== */
+.image-placeholder {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: var(--text-muted, #555);
+  font-size: 14px;
+}
+
+.image-placeholder .placeholder-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+/* ========== Rendered image & metadata ========== */
+.rendered-image {
+  max-width: 100%;
+  max-height: 480px;
+  border-radius: 6px;
+}
+
+.image-meta {
+  margin-top: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted, #555);
+}

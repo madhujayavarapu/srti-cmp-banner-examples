@@ -9,146 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/components.css">
-  <style>
-    .input-block {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .input-label {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary, #888);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .base64-textarea {
-      width: 100%;
-      min-height: 120px;
-      padding: 14px 16px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 12px;
-      line-height: 1.6;
-      background: var(--surface-2, #111);
-      border: 1px solid var(--border, #222);
-      border-radius: 8px;
-      color: var(--text-primary, #f0f0f0);
-      resize: vertical;
-      outline: none;
-      transition: border-color 0.15s;
-      box-sizing: border-box;
-    }
-
-    .base64-textarea:focus {
-      border-color: var(--accent, #6c6cff);
-    }
-
-    .base64-textarea::placeholder {
-      color: var(--text-muted, #555);
-    }
-
-    .action-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .btn-render {
-      padding: 10px 22px;
-      background: var(--accent, #6c6cff);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: opacity 0.15s;
-    }
-
-    .btn-render:hover {
-      opacity: 0.85;
-    }
-
-    .btn-clear {
-      padding: 10px 16px;
-      background: transparent;
-      color: var(--text-secondary, #888);
-      border: 1px solid var(--border, #222);
-      border-radius: 6px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      cursor: pointer;
-      transition: border-color 0.15s, color 0.15s;
-    }
-
-    .btn-clear:hover {
-      border-color: var(--text-secondary, #888);
-      color: var(--text-primary, #f0f0f0);
-    }
-
-    .error-msg {
-      font-size: 13px;
-      color: #f87171;
-      display: none;
-    }
-
-    .image-output {
-      margin-top: 4px;
-    }
-
-    .image-output-header {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      color: var(--text-muted, #555);
-      padding: 10px 16px;
-      background: var(--surface-2, #111);
-      border: 1px solid var(--border, #222);
-      border-bottom: none;
-      border-radius: 8px 8px 0 0;
-      letter-spacing: 0.04em;
-    }
-
-    .image-output-body {
-      background: var(--surface-2, #111);
-      border: 1px solid var(--border, #222);
-      border-radius: 0 0 8px 8px;
-      padding: 24px;
-      min-height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .image-placeholder {
-      text-align: center;
-      color: var(--text-muted, #555);
-      font-size: 14px;
-    }
-
-    .image-placeholder .placeholder-icon {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
-    .rendered-image {
-      max-width: 100%;
-      max-height: 480px;
-      border-radius: 6px;
-      display: none;
-    }
-
-    .image-meta {
-      margin-top: 12px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      color: var(--text-muted, #555);
-      display: none;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/usecases/base64-image-viewer.css">
 </head>
 <body>
   <div class="page page--narrow">
@@ -176,7 +37,7 @@
         <div class="action-row">
           <button class="btn-render" onclick="renderImage()">Render image</button>
           <button class="btn-clear" onclick="clearAll()">Clear</button>
-          <span class="error-msg" id="error-msg">Invalid base64 or unsupported format.</span>
+          <span class="error-msg is-hidden" id="error-msg">Invalid base64 or unsupported format.</span>
         </div>
       </div>
     </section>
@@ -190,10 +51,10 @@
             <div class="placeholder-icon">🖼️</div>
             <p>Rendered image will appear here.</p>
           </div>
-          <img class="rendered-image" id="rendered-img" alt="Rendered base64 image" />
+          <img class="rendered-image is-hidden" id="rendered-img" alt="Rendered base64 image" />
         </div>
       </div>
-      <div class="image-meta" id="image-meta"></div>
+      <div class="image-meta is-hidden" id="image-meta"></div>
     </section>
 
     <footer>
@@ -209,15 +70,14 @@
       const errorMsg = document.getElementById('error-msg');
       const meta = document.getElementById('image-meta');
 
-      errorMsg.style.display = 'none';
-      img.style.display = 'none';
-      placeholder.style.display = 'flex';
-      placeholder.style.flexDirection = 'column';
-      meta.style.display = 'none';
+      errorMsg.classList.add('is-hidden');
+      img.classList.add('is-hidden');
+      placeholder.classList.remove('is-hidden');
+      meta.classList.add('is-hidden');
 
       if (!input) {
         errorMsg.textContent = 'Please paste a base64 string first.';
-        errorMsg.style.display = 'inline';
+        errorMsg.classList.remove('is-hidden');
         return;
       }
 
@@ -229,24 +89,24 @@
         const mimeType = detectMimeType(input);
         if (!mimeType) {
           errorMsg.textContent = 'Invalid base64 or unsupported format.';
-          errorMsg.style.display = 'inline';
+          errorMsg.classList.remove('is-hidden');
           return;
         }
         src = `data:${mimeType};base64,${input}`;
       }
 
       img.onload = function () {
-        placeholder.style.display = 'none';
-        img.style.display = 'block';
+        placeholder.classList.add('is-hidden');
+        img.classList.remove('is-hidden');
         meta.textContent = `dimensions: ${img.naturalWidth} × ${img.naturalHeight}px · size: ${formatBytes(estimateBase64Size(input))}`;
-        meta.style.display = 'block';
+        meta.classList.remove('is-hidden');
       };
 
       img.onerror = function () {
-        img.style.display = 'none';
-        placeholder.style.display = 'flex';
+        img.classList.add('is-hidden');
+        placeholder.classList.remove('is-hidden');
         errorMsg.textContent = 'Invalid base64 or unsupported image format.';
-        errorMsg.style.display = 'inline';
+        errorMsg.classList.remove('is-hidden');
       };
 
       img.src = src;
@@ -284,11 +144,12 @@
 
     function clearAll() {
       document.getElementById('base64-input').value = '';
-      document.getElementById('rendered-img').style.display = 'none';
-      document.getElementById('rendered-img').src = '';
-      document.getElementById('placeholder').style.display = 'flex';
-      document.getElementById('error-msg').style.display = 'none';
-      document.getElementById('image-meta').style.display = 'none';
+      const img = document.getElementById('rendered-img');
+      img.classList.add('is-hidden');
+      img.src = '';
+      document.getElementById('placeholder').classList.remove('is-hidden');
+      document.getElementById('error-msg').classList.add('is-hidden');
+      document.getElementById('image-meta').classList.add('is-hidden');
     }
 
     // Allow Ctrl+Enter / Cmd+Enter to render

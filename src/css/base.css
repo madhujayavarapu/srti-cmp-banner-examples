@@ -63,3 +63,8 @@ body::before {
   max-width: 900px;
   padding: 2rem 1.5rem 4rem;
 }
+
+/* ========== Utilities ========== */
+.is-hidden {
+  display: none !important;
+}
