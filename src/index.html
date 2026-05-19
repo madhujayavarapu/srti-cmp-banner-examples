@@ -74,5 +74,28 @@
       For testing purposes only. Do not use in production. · <a href="https://securiti.xyz" target="_blank" rel="noopener">Securiti</a>
     </footer>
   </div>
+
+
+  <script>
+    (function () {
+
+      // Drop few test trackers in local storage and session storage
+      if(window.localStorage) {
+        localStorage.setItem('test-tracker-1', 'test-value-1');
+        localStorage.setItem('test-tracker-2', 'test-value-2');
+      }
+
+      if(window.sessionStorage) {
+        sessionStorage.setItem('test-tracker-3', 'test-value-3');
+        sessionStorage.setItem('test-tracker-4', 'test-value-4');
+      }
+
+      // Drop few test cookies
+      if(document.cookie) {
+        document.cookie = 'test-cookie-1=test-value-1; path=/';
+        document.cookie = 'test-cookie-2=test-value-2; path=/';
+      }
+    })()
+  </script>
 </body>
 </html>
