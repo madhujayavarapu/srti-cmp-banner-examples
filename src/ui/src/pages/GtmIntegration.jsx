@@ -1,7 +1,16 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { PageLayout, UseCaseHeader, Hero, Footer } from '../components/Layout'
 
 const TAG_ACTIONS = [
+  {
+    id: 'SecuritiScanning',
+    label: 'Securiti scanning',
+    description: 'Load all tracking tags with the Securiti Scanning tag.',
+    event: 'securiti_scanning',
+    payload: {
+      SecuritiScanning: true
+    },
+  },
   {
     id: 'page_view',
     label: 'Page view',
@@ -139,6 +148,33 @@ function formatTime() {
 export default function GtmIntegration() {
   const [logs, setLogs] = useState([])
   const [tagState, setTagState] = useState({})
+
+  useEffect(() => {
+    // Get gtm container ID from environment
+    const gtmContainerId = process.env.VITE_GTM_CONTAINER_ID
+    console.log('gtmContainerId', gtmContainerId)
+
+    if(!gtmContainerId) {
+      return
+    }
+
+    // Load Gtm integration script
+    const script = document.createElement('script')
+    script.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmContainerId
+    document.head.appendChild(script)
+
+    // Initialize Gtm
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+    window.dataLayer.push({ 'gtm.containerId': gtmContainerId })
+    window.gtag = function() { dataLayer.push(arguments) }
+
+    return () => {
+      script.remove()
+      window.dataLayer = []
+      window.gtag = null
+    }
+  }, [])
 
   const addLog = useCallback((type, message) => {
     setLogs((prev) => [{ time: formatTime(), type, message }, ...prev])
