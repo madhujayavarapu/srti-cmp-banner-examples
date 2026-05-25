@@ -6,7 +6,7 @@ const TAG_ACTIONS = [
     id: 'SecuritiScanning',
     label: 'Securiti scanning',
     description: 'Load all tracking tags with the Securiti Scanning tag.',
-    event: 'securiti_scanning',
+    event: 'SecuritiScanning',
     payload: {
       SecuritiScanning: true
     },
@@ -145,37 +145,40 @@ function formatTime() {
   return new Date().toTimeString().slice(0, 8)
 }
 
+const GTM_ID_PATTERN = /^GTM-[A-Z0-9]{6,}$/
+
+function isValidGtmContainerId(id) {
+  if (!id) return false
+  const trimmed = id.trim()
+  if (!GTM_ID_PATTERN.test(trimmed)) return false
+  // Reject placeholder values like "GTM-XXXXXXX"
+  if (/^GTM-X+$/.test(trimmed)) return false
+  return true
+}
+
 export default function GtmIntegration() {
   const [logs, setLogs] = useState([])
   const [tagState, setTagState] = useState({})
 
+  const gtmContainerId = import.meta.env.VITE_GTM_CONTAINER_ID
+  const hasValidContainer = isValidGtmContainerId(gtmContainerId)
+
   useEffect(() => {
-    // Get gtm container ID from environment
-    let gtmContainerId = import.meta.env.VITE_GTM_CONTAINER_ID
-    console.log('gtmContainerId', gtmContainerId)
+    if (!hasValidContainer) return
 
-    if(!gtmContainerId) {
-      console.log('No gtm container ID found, using default')
-      gtmContainerId = 'GTM-WMN5D8V6'
-    }
-
-    // Load Gtm integration script
     const script = document.createElement('script')
-    script.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmContainerId
+    script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmContainerId}`
+    script.async = true
     document.head.appendChild(script)
 
-    // Initialize Gtm
     window.dataLayer = window.dataLayer || []
     window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
     window.dataLayer.push({ 'gtm.containerId': gtmContainerId })
-    window.gtag = function() { dataLayer.push(arguments) }
 
     return () => {
       script.remove()
-      window.dataLayer = []
-      window.gtag = null
     }
-  }, [])
+  }, [gtmContainerId, hasValidContainer])
 
   const addLog = useCallback((type, message) => {
     setLogs((prev) => [{ time: formatTime(), type, message }, ...prev])
@@ -239,13 +242,35 @@ export default function GtmIntegration() {
 
       <section className="section">
         <h2 className="section-title">Fire GTM tags &amp; watch the log</h2>
-        <p className="text-muted gtm-tag-intro">
-          Click a tag on the left to push an event to <code>window.dataLayer</code>. The button
-          updates with its fire count and timestamp, and the log on the right captures the full
-          payload &mdash; visible side-by-side.
-        </p>
 
-        <div className="gtm-workspace">
+        {!hasValidContainer ? (
+          <div className="gtm-not-found" role="alert">
+            <div className="gtm-not-found-icon">{'\u26A0\uFE0F'}</div>
+            <div className="gtm-not-found-body">
+              <h3>GTM container not found</h3>
+              <p>
+                No valid <code>VITE_GTM_CONTAINER_ID</code> is configured. Tag firing is
+                disabled until a real container ID is provided.
+              </p>
+              <p className="gtm-not-found-current">
+                Current value:{' '}
+                <code>{gtmContainerId ? gtmContainerId : '(not set)'}</code>
+              </p>
+              <p className="gtm-not-found-hint">
+                Set it in <code>src/ui/.env</code> (e.g.{' '}
+                <code>VITE_GTM_CONTAINER_ID=GTM-ABC1234</code>) and restart the dev server.
+              </p>
+            </div>
+          </div>
+        ) : (
+          <>
+            <p className="text-muted gtm-tag-intro">
+              Click a tag on the left to push an event to <code>window.dataLayer</code>. The
+              button updates with its fire count and timestamp, and the log on the right
+              captures the full payload &mdash; visible side-by-side.
+            </p>
+
+            <div className="gtm-workspace">
           <div className="gtm-workspace-tags">
             <div className="gtm-tag-grid">
               {TAG_ACTIONS.map((action) => {
@@ -313,8 +338,10 @@ export default function GtmIntegration() {
                 )}
               </div>
             </div>
-          </aside>
-        </div>
+            </aside>
+            </div>
+          </>
+        )}
       </section>
 
       <Footer />
