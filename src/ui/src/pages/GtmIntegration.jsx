@@ -151,11 +151,11 @@ export default function GtmIntegration() {
 
   useEffect(() => {
     // Get gtm container ID from environment
-    const gtmContainerId = process.env.VITE_GTM_CONTAINER_ID
+    let gtmContainerId = process.env.VITE_GTM_CONTAINER_ID
     console.log('gtmContainerId', gtmContainerId)
 
     if(!gtmContainerId) {
-      return
+      gtmContainerId = 'GTM-WMN5D8V6'
     }
 
     // Load Gtm integration script
