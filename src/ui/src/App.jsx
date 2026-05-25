@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, redirect, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
 import BannerTesting from './pages/BannerTesting'
 import Autoblocking from './pages/Autoblocking'
@@ -8,7 +8,7 @@ import GtmIntegration from './pages/GtmIntegration'
 import CmpBannerLoader from './components/CmpBannerLoader'
 
 const routes = [
-  { path: '/', element: <Home /> },
+  { path: '/', element: <Navigate to="/gtm-integration" replace /> },
   { path: '/banner-testing', element: <BannerTesting /> },
   {
     path: '/autoblocking',
