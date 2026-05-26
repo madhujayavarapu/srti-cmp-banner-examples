@@ -3,10 +3,10 @@ import { PageLayout, UseCaseHeader, Hero, Footer } from '../components/Layout'
 
 const TAG_ACTIONS = [
   {
-    id: 'SecuritiScanning',
+    id: 'securiti_scanning',
     label: 'Securiti scanning',
     description: 'Load all tracking tags with the Securiti Scanning tag.',
-    event: 'SecuritiScanning',
+    event: 'securiti_scanning',
     payload: {
       SecuritiScanning: true
     },
