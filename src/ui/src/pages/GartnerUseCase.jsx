@@ -3,6 +3,7 @@ import { PageLayout, UseCaseHeader, Hero, Footer } from '../components/Layout'
 import useCmpBanner from '../hooks/useCmpBanner'
 import { resolveCmpConfig } from '../data/cmpConfigs'
 import { setCookie, deleteCookie, getCookie } from '../utils/cookies'
+import useExternalScript from '../hooks/useExternalScript'
 
 const CLASSIFIED_COOKIES = {
   essential: {
@@ -13,32 +14,32 @@ const CLASSIFIED_COOKIES = {
       { name: 'session_id', value: 'sess-abc123-scan-token', options: { maxAge: 86400 } },
       { name: 'csrf_token', value: 'csrf-xyz789-scan-value', options: { maxAge: 3600 } },
     ],
-  },
-  analytics: {
-    label: 'Analytics',
-    icon: '\u{1F4CA}',
-    description: 'Categorized during scan. Blocked until analytics consent is granted.',
-    cookies: [
-      { name: '_ga', value: 'GA1.1.123456789.1234567890', options: { maxAge: 63072000 } },
-      { name: '_gid', value: 'GA1.1.987654321.9876543210', options: { maxAge: 86400 } },
-    ],
-  },
-  advertising: {
-    label: 'Advertising',
-    icon: '\u{1F4E2}',
-    description: 'Categorized during scan. Blocked until marketing consent is granted.',
-    cookies: [
-      { name: '_fbp', value: 'fb.1.1234567890.123456789', options: { maxAge: 7776000 } },
-    ],
-  },
-  functional: {
-    label: 'Functional',
-    icon: '\u2699\uFE0F',
-    description: 'Categorized during scan. Blocked until functional consent is granted.',
-    cookies: [
-      { name: 'lang_pref', value: 'en-US', options: { maxAge: 31536000 } },
-    ],
-  },
+  }
+  // analytics: {
+  //   label: 'Analytics',
+  //   icon: '\u{1F4CA}',
+  //   description: 'Categorized during scan. Blocked until analytics consent is granted.',
+  //   cookies: [
+  //     { name: '_ga', value: 'GA1.1.123456789.1234567890', options: { maxAge: 63072000 } },
+  //     { name: '_gid', value: 'GA1.1.987654321.9876543210', options: { maxAge: 86400 } },
+  //   ],
+  // },
+  // advertising: {
+  //   label: 'Advertising',
+  //   icon: '\u{1F4E2}',
+  //   description: 'Categorized during scan. Blocked until marketing consent is granted.',
+  //   cookies: [
+  //     { name: '_fbp', value: 'fb.1.1234567890.123456789', options: { maxAge: 7776000 } },
+  //   ],
+  // },
+  // functional: {
+  //   label: 'Functional',
+  //   icon: '\u2699\uFE0F',
+  //   description: 'Categorized during scan. Blocked until functional consent is granted.',
+  //   cookies: [
+  //     { name: 'lang_pref', value: 'en-US', options: { maxAge: 31536000 } },
+  //   ],
+  // },
 }
 
 const UNKNOWN_COOKIES = [
@@ -141,6 +142,8 @@ function clearScanningEvents() {
 export default function GartnerUseCase() {
   const cmpConfig = resolveCmpConfig()
   useCmpBanner(cmpConfig)
+
+  useExternalScript()
 
   const [classifiedStatus, setClassifiedStatus] = useState(readClassifiedStatus)
   const [unknownStatus, setUnknownStatus] = useState(readUnknownStatus)
