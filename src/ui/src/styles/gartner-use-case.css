@@ -1,0 +1,312 @@
+/**
+ * CMP Banner Testing — Gartner demo use case styles
+ */
+
+.gartner-lead {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+.gartner-lead--spaced {
+  margin-top: 1.25rem;
+}
+
+.gartner-lead code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.88em;
+  color: var(--text-primary);
+}
+
+.gartner-narrative {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 720px;
+}
+
+.gartner-narrative li + li {
+  margin-top: 0.5rem;
+}
+
+.gartner-subtitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  color: var(--text-primary);
+}
+
+.gartner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.gartner-btn {
+  padding: 9px 18px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.gartner-btn:hover {
+  border-color: rgba(237, 137, 54, 0.4);
+  color: var(--accent-coral);
+}
+
+.gartner-btn--primary {
+  background: var(--accent-coral);
+  color: #0a0e14;
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.gartner-btn--primary:hover {
+  opacity: 0.85;
+  color: #0a0e14;
+}
+
+.gartner-btn--teal {
+  border-color: rgba(56, 178, 172, 0.3);
+  color: var(--accent-teal);
+}
+
+.gartner-btn--teal:hover {
+  background: rgba(56, 178, 172, 0.08);
+  border-color: rgba(56, 178, 172, 0.5);
+  color: var(--accent-teal);
+}
+
+.gartner-hint {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 720px;
+}
+
+.gartner-table-wrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.gartner-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.gartner-table th,
+.gartner-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.gartner-table th {
+  background: rgba(237, 137, 54, 0.06);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.8rem;
+}
+
+.gartner-table td {
+  color: var(--text-secondary);
+}
+
+.gartner-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.gartner-code-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.gartner-code-block--compact {
+  margin-bottom: 0.5rem;
+}
+
+.gartner-code-block__header {
+  padding: 0.75rem 1rem;
+  background: rgba(99, 179, 237, 0.06);
+  border-bottom: 1px solid var(--border);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.gartner-code-block pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  overflow-x: auto;
+}
+
+.gartner-cookie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.gartner-cookie-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.gartner-cookie-card--essential {
+  border-color: rgba(104, 211, 145, 0.25);
+}
+
+.gartner-cookie-card--analytics {
+  border-color: rgba(99, 179, 237, 0.25);
+}
+
+.gartner-cookie-card--advertising {
+  border-color: rgba(237, 137, 54, 0.25);
+}
+
+.gartner-cookie-card--functional {
+  border-color: rgba(236, 201, 75, 0.25);
+}
+
+.gartner-cookie-card__header {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.gartner-cookie-card__icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+}
+
+.gartner-cookie-card__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.gartner-cookie-card__desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.gartner-cookie-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.gartner-cookie-list__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 0.75rem;
+  align-items: baseline;
+  padding: 0.5rem 0.65rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius);
+  font-size: 0.82rem;
+}
+
+.gartner-cookie-status {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  align-self: center;
+}
+
+.gartner-cookie-list__item .gartner-cookie-status {
+  grid-row: span 2;
+}
+
+.gartner-cookie-status--present {
+  color: var(--accent-mint);
+  background: rgba(104, 211, 145, 0.12);
+}
+
+.gartner-cookie-status--missing {
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.gartner-cookie-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+}
+
+.gartner-cookie-value {
+  grid-column: 2;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gartner-unknown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gartner-unknown-list__item {
+  background: var(--bg-card);
+  border: 1px dashed rgba(237, 137, 54, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+}
+
+.gartner-unknown-list__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.gartner-unknown-list__desc {
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}

@@ -7,6 +7,7 @@ import './styles/components.css'
 import './styles/autoblocking.css'
 import './styles/base64-viewer.css'
 import './styles/gtm-integration.css'
+import './styles/gartner-use-case.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

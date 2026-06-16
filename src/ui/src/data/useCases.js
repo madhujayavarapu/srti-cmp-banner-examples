@@ -40,6 +40,16 @@ const useCases = [
     accent: 'var(--accent-cyan)',
   },
   {
+    id: 'gartner-use-case',
+    icon: '\u{1F3AC}',
+    title: 'Gartner demo — unknown tracker compliance',
+    description:
+      'Demo how CMP stays compliant when rogue trackers appear after a scan. Simulate classified vs unknown cookies and domain/compliance scan events.',
+    arrow: 'Open demo',
+    accentBg: 'rgba(237, 137, 54, 0.15)',
+    accent: 'var(--accent-coral)',
+  },
+  {
     id: 'risk-analysis',
     icon: '\u{1F4CA}',
     title: 'Risk analysis',

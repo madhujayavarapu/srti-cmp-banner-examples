@@ -5,10 +5,12 @@ import Autoblocking from './pages/Autoblocking'
 import Base64Viewer from './pages/Base64Viewer'
 import RiskAnalysis from './pages/RiskAnalysis'
 import GtmIntegration from './pages/GtmIntegration'
+import GartnerUseCase from './pages/GartnerUseCase'
 import CmpBannerLoader from './components/CmpBannerLoader'
 
 const routes = [
-  { path: '/', element: <Home /> },
+  // { path: '/', element: <Home /> },
+  { path: '/', element: <Navigate to="/gartner-use-case" replace /> },
   { path: '/banner-testing', element: <BannerTesting /> },
   {
     path: '/autoblocking',
@@ -34,6 +36,7 @@ const routes = [
     },
   },
   { path: '/gtm-integration', element: <GtmIntegration /> },
+  { path: '/gartner-use-case', element: <GartnerUseCase /> },
 ]
 
 export default function App() {
