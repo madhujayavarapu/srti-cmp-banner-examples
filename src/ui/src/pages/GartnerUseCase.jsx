@@ -44,13 +44,13 @@ const CLASSIFIED_COOKIES = {
 
 const UNKNOWN_COOKIES = [
   {
-    name: 'rogue_pixel_id',
+    name: 'spy_pixel_id',
     value: 'rp-9f3a2b1c-unclassified',
     description: 'Dropped by a new marketing pixel script added after the scan.',
     options: { maxAge: 7776000 },
   },
   {
-    name: 'rogue_campaign_ref',
+    name: 'spy_campaign_ref',
     value: 'camp-summer-2026-unknown',
     description: 'Campaign tracking cookie from an unapproved initiator.',
     options: { maxAge: 2592000 },
@@ -65,7 +65,7 @@ const UNKNOWN_COOKIES = [
 
 const ALL_COOKIES = [
   ...Object.values(CLASSIFIED_COOKIES).flatMap((cat) => cat.cookies),
-  ...UNKNOWN_COOKIES,
+  // ...UNKNOWN_COOKIES,
 ]
 
 const GAP_TABLE = [
