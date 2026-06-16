@@ -143,8 +143,6 @@ export default function GartnerUseCase() {
   const cmpConfig = resolveCmpConfig()
   useCmpBanner(cmpConfig)
 
-  useExternalScript()
-
   const [classifiedStatus, setClassifiedStatus] = useState(readClassifiedStatus)
   const [unknownStatus, setUnknownStatus] = useState(readUnknownStatus)
   const [scanningEvents, setScanningEvents] = useState(readScanningEvents)
