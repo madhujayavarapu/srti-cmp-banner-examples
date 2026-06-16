@@ -8,7 +8,7 @@ import GtmIntegration from './pages/GtmIntegration'
 import CmpBannerLoader from './components/CmpBannerLoader'
 
 const routes = [
-  { path: '/', element: <Navigate to="/gtm-integration" replace /> },
+  { path: '/', element: <Home /> },
   { path: '/banner-testing', element: <BannerTesting /> },
   {
     path: '/autoblocking',
