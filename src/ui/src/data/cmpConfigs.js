@@ -15,5 +15,5 @@ export function resolveCmpConfig(matches = []) {
   //   const config = matches[i].handle?.cmpConfig
   //   if (config) return config
   // }
-  return DEFAULT_CMP_CONFIG
+  return GARTNER_CMP_CONFIG
 }
