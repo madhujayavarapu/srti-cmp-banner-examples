@@ -21,17 +21,20 @@ export default function useCmpBanner({
   skipCss = false,
   dataAttributes = {},
   enabled = true,
+  shouldLoadAutoblocking = false,
 }) {
   const { pathname } = useLocation()
   const { cdn, backend } = ENVIRONMENTS[environment]
 
-  useExternalScript(
-    `${cdn}/consent/auto_blocking/${tenantUUID}/${domainUUID}.js`,
-    {},
-    'head',
-    enabled,
-    pathname,
-  )
+  if(shouldLoadAutoblocking) {
+    useExternalScript(
+      `${cdn}/consent/auto_blocking/${tenantUUID}/${domainUUID}.js`,
+      {},
+      'head',
+      enabled,
+      pathname,
+    )
+  }
 
   useExternalScript(
     `${cdn}/consent/cookie-consent-sdk-loader.js`,
