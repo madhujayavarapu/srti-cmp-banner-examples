@@ -11,8 +11,8 @@ const CLASSIFIED_COOKIES = {
     icon: '\u{1F512}',
     description: 'Discovered in the initial domain scan. Required for core site operation.',
     cookies: [
-      { name: 'session_id', value: 'sess-abc123-scan-token', options: { maxAge: 86400 } },
-      { name: 'csrf_token', value: 'csrf-xyz789-scan-value', options: { maxAge: 3600 } },
+      // { name: 'session_id', value: 'sess-abc123-scan-token', options: { maxAge: 86400 } },
+      // { name: 'csrf_token', value: 'csrf-xyz789-scan-value', options: { maxAge: 3600 } },
     ],
   }
 }
