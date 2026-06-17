@@ -1,0 +1,189 @@
+/**
+ * CMP Banner Testing — cookie policy page
+ */
+
+.cookie-policy-lead {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 720px;
+}
+
+.cookie-policy-lead--spaced {
+  margin-top: 1rem;
+}
+
+.cookie-policy-lead code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.88em;
+  color: var(--text-primary);
+}
+
+.cookie-policy-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.cookie-policy-summary__item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.cookie-policy-summary__item code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--accent-cyan);
+}
+
+.cookie-policy-table-wrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.cookie-policy-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.cookie-policy-table th,
+.cookie-policy-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.cookie-policy-table th {
+  background: rgba(99, 179, 237, 0.06);
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.cookie-policy-table td {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.cookie-policy-table td code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.cookie-policy-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.cookie-policy-category {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.cookie-policy-category--analytics {
+  color: var(--accent-cyan);
+  background: rgba(99, 179, 237, 0.12);
+}
+
+.cookie-policy-category--advertising {
+  color: var(--accent-coral);
+  background: rgba(237, 137, 54, 0.12);
+}
+
+.cookie-policy-category--essential {
+  color: var(--accent-mint);
+  background: rgba(104, 211, 145, 0.12);
+}
+
+.cookie-policy-category--functional {
+  color: var(--accent-amber);
+  background: rgba(236, 201, 75, 0.12);
+}
+
+.cookie-policy-retention {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.cookie-policy-retention__card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.cookie-policy-retention__card h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.cookie-policy-retention__policy {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 0.75rem;
+}
+
+.cookie-policy-retention__default {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.cookie-policy-retention__default strong {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.cookie-policy-code-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.cookie-policy-code-block__header {
+  padding: 0.75rem 1rem;
+  background: rgba(99, 179, 237, 0.06);
+  border-bottom: 1px solid var(--border);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.cookie-policy-code-block pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  overflow-x: auto;
+}

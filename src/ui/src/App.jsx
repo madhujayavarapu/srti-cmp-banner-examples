@@ -6,6 +6,7 @@ import Base64Viewer from './pages/Base64Viewer'
 import RiskAnalysis from './pages/RiskAnalysis'
 import GtmIntegration from './pages/GtmIntegration'
 import GartnerUseCase from './pages/GartnerUseCase'
+import CookiePolicy from './pages/CookiePolicy'
 import CmpBannerLoader from './components/CmpBannerLoader'
 
 const routes = [
@@ -37,6 +38,7 @@ const routes = [
   },
   { path: '/gtm-integration', element: <GtmIntegration /> },
   { path: '/gartner-use-case', element: <GartnerUseCase /> },
+  { path: '/cookie-policy', element: <CookiePolicy /> },
 ]
 
 export default function App() {
